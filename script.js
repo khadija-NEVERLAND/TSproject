@@ -20,28 +20,19 @@ document.querySelector("button").addEventListener("click", () => {
     window.speechSynthesis.speak(speech);
 });
 
-let recognition = new webkitSpeechRecognition();
-recognition.continuous = true;
-recognition.lang = 'fr-FR'; // Langue française, modifiez selon vos besoins
+document.getElementById("click_to_convert").addEventListener('click', function () {
+    window.SpeechRecognition = window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.interimResults = true;
 
-recognition.onresult = function(event) {
-    let speechToText = event.results[event.results.length - 1][0].transcript;
-    document.querySelector("textarea").value = speechToText;
-};
+    recognition.addEventListener('result', e => {
+        const transcript = Array.from(e.results)
+            .map(result => result[0])
+            .map(result => result.transcript)
+            .join('');
 
-recognition.onerror = function(event) {
-    console.error('Erreur de reconnaissance vocale: ', event.error);
-};
+        document.getElementById("convert_to_text").innerHTML = transcript;
+    });
 
-recognition.onend = function() {
-    console.log('Fin de la reconnaissance vocale.');
-};
-
-function startSpeechToText() {
     recognition.start();
-}
-
-function stopSpeechToText() {
-    recognition.stop();
-}
-
+});
