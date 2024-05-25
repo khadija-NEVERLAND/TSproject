@@ -5,9 +5,7 @@ Conversion de texte en discours (TTS) :
 
 Lorsque l'utilisateur entre du texte dans la zone de texte et clique sur le bouton "Listen", la fonction speak(text) est déclenchée.
 Cette fonction crée un nouvel objet SpeechSynthesisUtterance, qui est utilisé pour configurer les paramètres de la synthèse vocale, tels que le texte à lire.
-Ensuite, un objet Audio est créé et configuré pour lire le texte en utilisant l'API de synthèse vocale de Google Translate.
-L'URL générée par cette API est basée sur le texte à lire, encodé en tant que paramètre de requête dans l'URL.
-Enfin, l'élément audio est lu en appelant la méthode play().
+Ensuite, un objet Audio est créé et configuré pour lire le texte .
 Conversion de discours en texte (STT) :
 
 Lorsque l'utilisateur clique sur le bouton "Voice To Text", la fonction listen() est déclenchée.
